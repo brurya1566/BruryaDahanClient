@@ -1,0 +1,5 @@
+<p>tab-reports works!</p>
+<mat-tab-group dir="rtl">
+    <mat-tab label="report of exist malfunction" *ngIf="this.logMalfunctionSer.malfunctionComponent.length>0"><app-log-malfunction></app-log-malfunction></mat-tab>
+    <mat-tab label="report a new malfunction"><app-malfunction-report></app-malfunction-report></mat-tab>
+ </mat-tab-group>

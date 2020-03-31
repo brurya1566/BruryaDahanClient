@@ -1,0 +1,21 @@
+<form class="example-form" (ngSubmit)="submit()">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="description" [(ngModel)]="description" name="description" />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>log Malfunction Status</mat-label>
+      <mat-select [(ngModel)]="status" name="status" ngDefaultControl>
+        <mat-option *ngFor="let u of MalfunctionStatusSer.malfunctionStatusList" [value]="u.malfunctionStatusName">
+          {{u.malfunctionStatusName}}
+        </mat-option>
+      </mat-select>
+      <!-- <mat-label>Urgency level</mat-label>
+      <mat-select [(ngModel)]="urgency" name="urgency" ngDefaultControl>
+        <mat-option *ngFor="let u of urgencySer.urgencyLevelList" [value]="u.urgencyName">
+          {{u.urgencyName}}
+        </mat-option>
+      </mat-select> -->
+    </mat-form-field>
+    <button type="submit" mat-flat-button color="accent">Submit</button>
+  </form>
