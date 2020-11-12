@@ -1,0 +1,14 @@
+.account-movements{
+    padding-left: 25px;
+    padding-top:10px;
+    padding-bottom: 10px;;
+}
+table{
+    width:100%;
+}
+.padd-top{
+    padding-top:10px;
+}
+.has-error{
+color:red;
+}

@@ -1,0 +1,95 @@
+<div class="account-movements">
+  <div class="row">
+    <div class="col-sm-3">
+      <h4>action date</h4>
+      <div class="row">
+        <div class="col-sm-6"></div>
+        <mat-form-field appearance="fill">
+          <mat-label>from</mat-label>
+          <input matInput [matDatepicker]="picker1" (dateChange)="filter.date.toDate!=null?filterListByDate():''" [(ngModel)]="filter.date.fromDate">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>To</mat-label>
+          <input matInput [matDatepicker]="picker2" (dateChange)="filter.date.fromDate!=null?filterListByDate():''" [(ngModel)]="filter.date.toDate">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <h4>text filter</h4>
+      <input type="text" class="form-control" #firstName="ngModel" name="firstName" [(ngModel)]="filter.firstName"
+        id="firstName" maxlength="100" pattern="[א-ת ]*">
+      <div *ngIf="firstName.errors?.pattern">
+        <p class="has-error"> hebrew is the only language valid </p>
+      </div>
+    </div>
+    <div class=col-sm-3>
+      <h4>select city</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>filter by city</mat-label>
+        <mat-select [(ngModel)]="filter.city" (selectionChange)="filterBranchList();filterListByCity()">
+          <mat-option *ngFor="let element of cityList" [value]="element.cityCode">
+            {{element.descCity}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <div class="col-sm-3">
+        <h4>select branch</h4>
+        <mat-form-field appearance="fill">
+          <mat-label>filter by branch</mat-label>
+          <mat-select [(ngModel)]="filter.branch" (selectionChange)="filterListByBranch()">
+            <mat-option *ngFor="let element of branchListFiltered" [value]="element.branchCode">
+              {{element.descBranch}} - {{element.branchCode}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+    <div *ngIf="accountMovementsListFiltered.items">
+      no movements found by this filter
+    </div>
+    <div *ngIf="accountMovementsList.items">
+      no movements found 
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let move of accountMovementsListFiltered">
+      <movements-obj [movement]="move"></movements-obj>
+    </div>
+  </div>
+
+  <div class="row padd-top">
+    <div class="col-sm-3">
+      <button mat-raised-button color="accent" type="button" class="btn btn-primary-outline pull-right"
+        (click)="getMoreMovements();"><i class="fa fa-plus"></i> Get more movements</button>
+    </div>
+    <div class="col-sm-3">
+      <button mat-raised-button color="accent" type="button" class="btn btn-primary-outline pull-right"
+        (click)="GetAccountMovementByPkReferenceCode();"><i class="fa fa-plus"></i> get Item By Pk Reference Code</button>
+      <h4>enter PkReferenceCode</h4>
+      <input type="text" class="form-control" name="PkReferenceCde" [(ngModel)]="PkReferenceCode"
+        id="PkReferenceCode">
+    </div>
+    <div class="col-sm-3">
+       <h3>Upload File</h3>
+            <form (ngSubmit)="uploadCheckImage()">
+                <div class="form-group">
+                    <input type="file" name="image"  />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+  </div>
+  <div class="row" *ngIf="ItemByPkReferenceCode">
+    <movements-obj [movement]="ItemByPkReferenceCode"></movements-obj>
+  </div>
+  <!-- <upload-file></upload-file> -->
+</div>

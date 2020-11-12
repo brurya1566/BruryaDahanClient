@@ -28,10 +28,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -128,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "angular-cli-esri-map"
+  "defaultProject": "angular-cli-esri-map",
+  "cli": {
+    "analytics": "089cef46-9dff-406f-b64e-9ab94ef9ea34"
+  }
 }
